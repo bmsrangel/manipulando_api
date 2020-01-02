@@ -1,3 +1,4 @@
+import 'package:dio_custom/app/modules/home/subpages/update/update_bloc.dart';
 import 'package:dio_custom/app/modules/home/subpages/create/create_bloc.dart';
 import 'package:dio_custom/app/app_module.dart';
 import 'package:dio_custom/app/modules/home/home_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:dio_custom/app/modules/home/home_page.dart';
 class HomeModule extends ModuleWidget {
   @override
   List<Bloc> get blocs => [
+        Bloc((i) => UpdateBloc(i.get<ApiRepository>()), singleton: false),
         Bloc((i) => CreateBloc(i.get<ApiRepository>()), singleton: false),
         Bloc((i) => HomeBloc(i.get<ApiRepository>())),
       ];

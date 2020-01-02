@@ -28,6 +28,15 @@ class ApiRepository extends Disposable {
     }
   }
 
+  Future<int> updatePost(Map<String, dynamic> data, int id) async {
+    try {
+      Response response = await _client.put("/posts/$id", data: data);
+      return response.statusCode;
+    } on DioError catch (e) {
+      throw e.message;
+    }
+  }
+
   //dispose will be called automatically
   @override
   void dispose() {}

@@ -1,6 +1,7 @@
 import 'package:dio_custom/app/modules/home/home_bloc.dart';
 import 'package:dio_custom/app/modules/home/home_module.dart';
 import 'package:dio_custom/app/modules/home/subpages/create/create_page.dart';
+import 'package:dio_custom/app/modules/home/subpages/update/update_page.dart';
 import 'package:dio_custom/app/shared/models/post_model.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,18 @@ class _HomePageState extends State<HomePage> {
             if (snapshot.hasData) {
               return Column(
                 children: snapshot.data
-                    .map<ListTile>((item) => ListTile(title: Text(item.title)))
+                    .map<ListTile>((item) => ListTile(
+                          title: Text(item.title),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UpdatePage(
+                                          onSucess: bloc.getPosts,
+                                          snapshot: item,
+                                        )));
+                          },
+                        ))
                     .toList(),
               );
             } else {
