@@ -4,7 +4,7 @@ import 'package:dio_custom/app/shared/custom_dio/custom_dio_repository.dart';
 import 'package:dio_custom/app/shared/models/post_model.dart';
 
 class ApiRepository extends Disposable {
-  final CustomDio _client;
+  final _client;
 
   ApiRepository(this._client);
 

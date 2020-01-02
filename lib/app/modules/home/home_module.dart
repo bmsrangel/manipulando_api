@@ -5,6 +5,7 @@ import 'package:dio_custom/app/modules/home/home_bloc.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:dio_custom/app/shared/custom_dio/custom_dio_repository.dart';
 import 'package:dio_custom/app/shared/repositories/api_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dio_custom/app/modules/home/home_page.dart';
 
@@ -18,7 +19,9 @@ class HomeModule extends ModuleWidget {
 
   @override
   List<Dependency> get dependencies => [
-        Dependency((i) => ApiRepository(AppModule.to.get<CustomDio>())),
+        Dependency((i) => ApiRepository(kIsWeb
+            ? AppModule.to.get<CustomDioWeb>()
+            : AppModule.to.get<CustomDio>())),
       ];
 
   @override
