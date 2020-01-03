@@ -1,3 +1,5 @@
+import 'package:dio_custom/app/shared/auth/auth_bloc.dart';
+import 'package:dio_custom/app/shared/auth/auth_repository.dart';
 import 'package:dio_custom/app/shared/repositories/api_repository.dart';
 import 'package:dio_custom/app/app_bloc.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -9,11 +11,13 @@ import 'package:dio_custom/app/app_widget.dart';
 class AppModule extends ModuleWidget {
   @override
   List<Bloc> get blocs => [
+        Bloc((i) => AuthBloc()),
         Bloc((i) => AppBloc()),
       ];
 
   @override
   List<Dependency> get dependencies => [
+        Dependency((i) => AuthRepository()),
         Dependency((i) =>
             ApiRepository(kIsWeb ? i.get<CustomDioWeb>() : i.get<CustomDio>())),
         Dependency((i) => CustomDio()),
